@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      #emailContainer {
+        max-width: 575px;
+        font-family: 'Garamond', 'EB Garamond', serif;
+        font-size: 12pt;
+        margin: 0 auto;
+      }
+
+      #header-img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="emailContainer">
+      <img src="https://i.imgur.com/F3AVIDc.png" id="header-img">
+      <p>Greetings, staffer aspirant!</p>
+
+      <p>Here are the links to your exams:</p>
+
+      <ul>
+        <li>General Exam: <?= generalExamLink ?></li>
+        <li>Section Exam: <?= sectionExamLink ?></li>
+      </ul>
+
+      <p>
+        Please edit the files directly. Do not download the files. 
+        For any questions, please direct them to the proctor present.
+      </p>
+
+      <p>Good luck!</p>
+
+      <p>
+        <strong>Always for issue-oriented critical thinking,</strong><br>
+        The LaSallian 63
+      </p>
+    </div>
+  </body>
+</html>
