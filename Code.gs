@@ -33,10 +33,10 @@ function sendScheduledEmails() {
       } catch (error) {
         // Log the error
         Logger.log("Error sending email for " + recipientEmail + "(" + error.message + ")\n\n\n\n");
-      } // Closing brace of catch block
-    } // Closing brace of if block
-  } // Closing brace of for block
-} // Closing brace of function
+      } 
+    } 
+  } 
+} 
 
 function sendEmail(recipientEmail, generalExamLink, sectionExamLink) {
   // Email subject
