@@ -12,8 +12,8 @@ function sendScheduledEmails() {
     // Note: The column index starts from 0. Second bracket is the column index.
     var schedule = data[i][2];
     var recipientEmail = data[i][5];
-    var generalExamLink = data[i][6];
-    var sectionExamLink = data[i][7];
+    var generalExamLink = data[i][7];
+    var sectionExamLink = data[i][8];
      
     // Convert the schedule cell (assumed to be in 9/27/2023 7:59:00 format) to a Date object
     var scheduleDate = new Date(schedule); 
