@@ -10,10 +10,17 @@ function sendScheduledEmails() {
   for (var i = 2; i < data.length; i++) { 
     // Get data from the current row per column. 
     // Note: The column index starts from 0. Second bracket is the column index.
+    var status = data[i][0];
     var schedule = data[i][2];
     var recipientEmail = data[i][5];
     var generalExamLink = data[i][7];
     var sectionExamLink = data[i][8];
+
+    // Check if the row has already been processed
+    if (status === "Sent" || status === "Failed") {
+      Logger.log("Email for " + recipientEmail + " has already been processed.");
+      continue;
+    }
      
     // Convert the schedule cell (assumed to be in 9/27/2023 7:59:00 format) to a Date object
     var scheduleDate = new Date(schedule); 
