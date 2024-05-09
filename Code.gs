@@ -18,7 +18,7 @@ function sendScheduledEmails() {
 
     // Check if the row has already been processed
     if (status === "Sent" || status === "Failed") {
-      Logger.log("Email for " + recipientEmail + " has already been processed.");
+      Logger.log("Email for " + recipientEmail + " has already been processed.\n\n\n\n");
       continue;
     }
      
@@ -44,7 +44,7 @@ function sendScheduledEmails() {
         Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n");
       } catch (error) {
         // Log the error
-        Logger.log("Error sending email for " + recipientEmail + "(" + error.message + ")\n\n\n\n");
+        Logger.log("ERROR sending email for " + recipientEmail + "(" + error.message + ")\n\n\n\n");
 
         // Mark the row as failed
         sheet.getRange(i + 1, 1).setValue("Failed");
