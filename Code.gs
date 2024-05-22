@@ -1,7 +1,6 @@
 function sendScheduledEmails() {
   var ss = SpreadsheetApp.getActiveSpreadsheet(); // Access the active spreadsheet
   var sheet = ss.getSheets()[0]; // Access the sheet with your data (assuming it's the first sheet, change if needed)
-  var currentTime = new Date(); // Get the current date and time
   var data = sheet.getDataRange().getValues(); // Get all the data in the sheet
   
   // Loop through the rows to check if emails should be sent
@@ -21,35 +20,19 @@ function sendScheduledEmails() {
       Logger.log("Email for " + recipientEmail + " has already been processed.\n\n\n\n");
       continue;
     }
-     
-    // Convert the schedule cell (assumed to be in 9/27/2023 7:59:00 format) to a Date object
-    var scheduleDate = new Date(schedule); 
 
-    // Check if the scheduleDate matches the current time
-    if (isForSending(scheduleDate, currentTime)) {
-      // Attempt to send the email and handle any exceptions
-      try {
-        // Log attempt to send email
+    try {
         Logger.log("Sending email for " + recipientEmail);
-        Logger.log("Schedule for " + recipientEmail + " is at " + scheduleDate.getFullYear() + "/" + scheduleDate.getMonth() + "/" + scheduleDate.getDate() + " " + scheduleDate.getHours() + ":" + scheduleDate.getMinutes());
-        Logger.log("Current time is " + currentTime.getFullYear() + "/" + currentTime.getMonth() + "/" + currentTime.getDate() + " " + currentTime.getHours() + ":" + currentTime.getMinutes());
-
-        // Send email
-        sendEmail(recipientEmail, generalExamLink, sectionExamLink);
-
-        // Mark the row as processed
-        sheet.getRange(i + 1, 1).setValue("Sent");
-        
-        // Log success
-        Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n");
-      } catch (error) {
+        sendEmail(recipientEmail, generalExamLink, sectionExamLink); // Send email
+        sheet.getRange(i + 1, 1).setValue("Sent"); // Mark the row as processed
+        Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n"); // Log success
+    } catch (error) {
         // Log the error
         Logger.log("ERROR sending email for " + recipientEmail + "(" + error.message + ")\n\n\n\n");
 
         // Mark the row as failed
         sheet.getRange(i + 1, 1).setValue("Failed");
-      } 
-    } 
+    }
   } 
 } 
 
