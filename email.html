@@ -13,31 +13,100 @@
       #header-img {
         width: 100%;
       }
+
+      td {
+        vertical-align: top;
+      }
+
+      td:first-child {
+        text-align: right;
+        min-width: 122px;
+      }
     </style>
   </head>
   <body>
     <div id="emailContainer">
       <img src="https://i.imgur.com/5Xm9A0T.png" id="header-img">
-      <p>Greetings, staffer aspirant!</p>
 
-      <p>Here are the links to your exams:</p>
+      <p>Greetings in St. La Salle, applicant!</p>
 
+      <p>As part of the application process, you must complete the General and Section-Specific 
+        Exams linked below.</p>
+    
       <ul>
         <li>General Exam: <?= generalExamLink ?></li>
         <li>Section Exam: <?= sectionExamLink ?></li>
       </ul>
 
-      <p>
-        Please edit the files directly. Do not download the files. 
-        For any questions, please direct them to the proctor present.
-      </p>
+      <p>Since you will be taking your exams online, kindly take note of the following:</p>
 
-      <p>Good luck!</p>
+      <ol>
+        <li>You will have 45 minutes to complete the General Exam.</li>
+        <li>You will have three hours and 15 minutes to complete your Section Exam.</li>
+        <li>You will be given a 5-minute grace period from when your exam is about to end before we restrict your access to the exams.</li>
+        <li><strong>Do not download</strong> the files. Simply edit your given link directly.</li>
+      </ol>
 
-      <p>
-        <strong>Always for issue-oriented critical thinking,</strong><br>
-        The LaSallian 63
-      </p>
+      <!-- Morning Session -->
+      <strong>Morning Session:</strong>
+      <table>
+        <tr>
+          <td>8:00  - 8:45 am</td>
+          <td>—</td>
+          <td>General Exams</td>
+        </tr>
+        <tr>
+          <td>8:50 am</td>
+          <td>—</td>
+          <td>Closing of General Exams</td>
+        </tr>
+        <tr>
+          <td>8:45 am - 12:00 pm</td>
+          <td>—</td>
+          <td>Section-Specific Exams</td>
+        </tr>
+        <tr>
+          <td>12:05 pm</td>
+          <td>—</td>
+          <td>Closing of Section-Specific Exams</td>
+        </tr>
+      </table>
+
+      <!-- Afternoon Session -->
+      <strong>Afternoon Session:</strong>
+      <table>
+        <tr>
+          <td>1:00 - 1:45 pm</td>
+          <td>—</td>
+          <td>General Exams</td>
+        </tr>
+        <tr>
+          <td>1:50 pm</td>
+          <td>—</td>
+          <td>Closing of General Exams</td>
+        </tr>
+        <tr>
+          <td>1:45 - 5:00 pm</td>
+          <td>—</td>
+          <td>Section-Specific Exams</td>
+        </tr>
+        <tr>
+          <td>5:05 pm</td>
+          <td>—</td>
+          <td>Closing of Section-Specific Exams</td>
+        </tr>
+      </table>
+
+      <p>Please expect an email after your exams containing the instructions for the Take Home 
+        Exam and Section Editor Interview.</p>
+
+      <p>If you have any questions or concerns, please raise them through this email thread. 
+        You may also reach the section editors through the platforms given in the questionnaire or Associate Editor Eloisa Limbago at (0917) 721 0513.</p>
+
+      <p>Thank you, and best of luck!</p>
+
+      <p><strong>Always for issue-oriented critical thinking,</strong><br>
+        The LaSallian 63</p>
     </div>
   </body>
 </html>
