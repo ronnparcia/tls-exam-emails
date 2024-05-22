@@ -1,6 +1,6 @@
-function sendScheduledEmails() {
+function processSheet(sheetName) {
   var ss = SpreadsheetApp.getActiveSpreadsheet(); // Access the active spreadsheet
-  var sheet = ss.getSheets()[0]; // Access the sheet with your data (assuming it's the first sheet, change if needed)
+  var sheet = ss.getSheetByName(sheetName); // Access the sheet with your data (assuming it's the first sheet, change if needed)
   var data = sheet.getDataRange().getValues(); // Get all the data in the sheet
   
   // Loop through the rows to check if emails should be sent
