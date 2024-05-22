@@ -35,6 +35,22 @@ function processSheet(sheetName) {
   } 
 } 
 
+function sendMay25Morning() {
+    processSheet("May 25 Morning");
+}
+
+function sendMay25Afternoon() {
+    processSheet("May 25 Afternoon");
+}
+
+function sendMay29Morning() {
+    processSheet("May 29 Morning");
+}
+
+function sendMay29Afternoon() {
+    processSheet("May 29 Afternoon");
+}
+
 function sendEmail(recipientEmail, generalExamLink, sectionExamLink) {
   // Email subject
   var subject = "[THE LASALLIAN] AY 2023-2024 Term 3 General & Section Exam";
