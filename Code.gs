@@ -55,13 +55,3 @@ function sendEmail(recipientEmail, generalExamLink, sectionExamLink) {
     }
   );
 }
-
-function isForSending(scheduleDate, currentTime) {
-  return (
-    scheduleDate.getFullYear() === currentTime.getFullYear() &&
-    scheduleDate.getMonth()    === currentTime.getMonth()    &&
-    scheduleDate.getDate()     === currentTime.getDate()     &&
-    scheduleDate.getHours()    === currentTime.getHours()    &&
-    scheduleDate.getMinutes()  === currentTime.getMinutes()
-  );
-}
