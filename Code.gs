@@ -61,7 +61,7 @@ function sendMay29Afternoon() {
 
 function sendEmail(recipientEmail, generalExamLink, sectionExamLink) {
   // Email subject
-  var subject = "[THE LASALLIAN] AY 2023-2024 Term 3 General & Section Exam";
+  var subject = "[THE LASALLIAN] General and Section-Specific Exams";
 
   // Create template from email.html and replace placeholders
   var body = HtmlService.createTemplateFromFile("email");
