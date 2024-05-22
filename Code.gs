@@ -2,12 +2,12 @@ function processSheet(sheetName) {
   var ss = SpreadsheetApp.getActiveSpreadsheet(); // Access the active spreadsheet
   var sheet = ss.getSheetByName(sheetName); // Access the sheet with your data (assuming it's the first sheet, change if needed)
   var data = sheet.getDataRange().getValues(); // Get all the data in the sheet
-  
+
   // Loop through the rows to check if emails should be sent
   // Note:  The loop starts from the third row (index 2) and skips the
   //        first row (NOTICE) and second row (header)
-  for (var i = 2; i < data.length; i++) { 
-    // Get data from the current row per column. 
+  for (var i = 2; i < data.length; i++) {
+    // Get data from the current row per column.
     // Note: The column index starts from 0. Second bracket is the column index.
     var status = data[i][0];
     var recipientEmail = data[i][3];
@@ -16,39 +16,47 @@ function processSheet(sheetName) {
 
     // Check if the row has already been processed
     if (status === "Sent" || status === "Failed") {
-      Logger.log("Email for " + recipientEmail + " has already been processed.\n\n\n\n");
+      Logger.log(
+        "Email for " + recipientEmail + " has already been processed.\n\n\n\n"
+      );
       continue;
     }
 
     try {
-        Logger.log("Sending email for " + recipientEmail);
-        sendEmail(recipientEmail, generalExamLink, sectionExamLink); // Send email
-        sheet.getRange(i + 1, 1).setValue("Sent"); // Mark the row as processed
-        Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n"); // Log success
+      Logger.log("Sending email for " + recipientEmail);
+      sendEmail(recipientEmail, generalExamLink, sectionExamLink); // Send email
+      sheet.getRange(i + 1, 1).setValue("Sent"); // Mark the row as processed
+      Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n"); // Log success
     } catch (error) {
-        // Log the error
-        Logger.log("ERROR sending email for " + recipientEmail + "(" + error.message + ")\n\n\n\n");
+      // Log the error
+      Logger.log(
+        "ERROR sending email for " +
+          recipientEmail +
+          "(" +
+          error.message +
+          ")\n\n\n\n"
+      );
 
-        // Mark the row as failed
-        sheet.getRange(i + 1, 1).setValue("Failed");
+      // Mark the row as failed
+      sheet.getRange(i + 1, 1).setValue("Failed");
     }
-  } 
-} 
+  }
+}
 
 function sendMay25Morning() {
-    processSheet("May 25 Morning");
+  processSheet("May 25 Morning");
 }
 
 function sendMay25Afternoon() {
-    processSheet("May 25 Afternoon");
+  processSheet("May 25 Afternoon");
 }
 
 function sendMay29Morning() {
-    processSheet("May 29 Morning");
+  processSheet("May 29 Morning");
 }
 
 function sendMay29Afternoon() {
-    processSheet("May 29 Afternoon");
+  processSheet("May 29 Afternoon");
 }
 
 function sendEmail(recipientEmail, generalExamLink, sectionExamLink) {
@@ -61,13 +69,8 @@ function sendEmail(recipientEmail, generalExamLink, sectionExamLink) {
   body.sectionExamLink = sectionExamLink;
 
   // Send email
-  GmailApp.sendEmail(
-    recipientEmail, 
-    subject,
-    "",
-    {
-      htmlBody: body.evaluate().getContent(),
-      name: "The LaSallian Applications"
-    }
-  );
+  GmailApp.sendEmail(recipientEmail, subject, "", {
+    htmlBody: body.evaluate().getContent(),
+    name: "The LaSallian Applications",
+  });
 }
