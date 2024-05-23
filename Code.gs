@@ -9,10 +9,10 @@ function genSecProcessSheet(sheetName) {
   for (var i = 2; i < data.length; i++) {
     // Get data from the current row per column.
     // Note: The column index starts from 0. Second bracket is the column index.
-    var recipientEmail = data[i][3];
     var genSecStatus = data[i][0];
+    var recipientEmail = data[i][4];
     var generalExamLink = data[i][6];
-    var sectionExamLink = data[i][6];
+    var sectionExamLink = data[i][7];
 
     // Check if the row has already been processed
     if (genSecStatus === "Sent" || genSecStatus === "Failed") {
