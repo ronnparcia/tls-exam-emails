@@ -43,23 +43,23 @@ function genSecProcessSheet(sheetName) {
   }
 }
 
-function sendMay25Morning() {
+function genSecMay25Morning() {
   genSecProcessSheet("May 25 Morning");
 }
 
-function sendMay25Afternoon() {
+function genSecMay25Afternoon() {
   genSecProcessSheet("May 25 Afternoon");
 }
 
-function sendMay29Morning() {
+function genSecMay29Morning() {
   genSecProcessSheet("May 29 Morning");
 }
 
-function sendMay29Afternoon() {
+function genSecMay29Afternoon() {
   genSecProcessSheet("May 29 Afternoon");
 }
 
-function sendEmail(recipientEmail, generalExamLink, sectionExamLink) {
+function genSecSendEmail(recipientEmail, generalExamLink, sectionExamLink) {
   // Email subject
   var subject = "[THE LASALLIAN] General and Section-Specific Exams";
 
