@@ -186,5 +186,5 @@ takeHomeProcessSheet("May 29 Morning");
 }
 
 function takeHomeMay29Afternoon() {
-genSecProcessSheet("May 29 Afternoon");
+    takeHomeProcessSheet("May 29 Afternoon");
 }
