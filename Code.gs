@@ -93,7 +93,9 @@ function takeHomeProcessSheet(sheetName) {
     var takeHomeExamLink = takeHomeGetLink(sectionName);
 
     try {
-      Logger.log("Sending email for " + recipientEmail);
+      Logger.log("Sending email for " + recipientEmail +"\n");
+      Logger.log("Section: " + sectionName);
+      Logger.log("Link: " + takeHomeExamLink);
       takeHomeSendEmail(recipientEmail, takeHomeExamLink)
       sheet.getRange(i + 1, 2).setValue("Sent"); // Mark the row as processed
       Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n"); // Log success
