@@ -93,10 +93,10 @@ function takeHomeProcessSheet(sheetName) {
     var takeHomeExamLink = takeHomeGetLink(sectionName);
 
     try {
-      Logger.log("Sending email for " + recipientEmail +"\n");
+      Logger.log("Sending email for " + recipientEmail + "\n");
       Logger.log("Section: " + sectionName);
       Logger.log("Link: " + takeHomeExamLink);
-      takeHomeSendEmail(recipientEmail, takeHomeExamLink)
+      takeHomeSendEmail(recipientEmail, takeHomeExamLink);
       sheet.getRange(i + 1, 2).setValue("Sent"); // Mark the row as processed
       Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n"); // Log success
     } catch (error) {
@@ -159,32 +159,32 @@ function takeHomeGetLink(sectionName) {
 }
 
 function takeHomeSendEmail(recipientEmail, takeHomeExamLink) {
-    // Email subject
-    var subject = "[THE LASALLIAN] AY 2023-2024 Term 3  Take Home Exam";
-  
-    // Create template from takeHomeExamEmail.html and replace placeholders
-    var body = HtmlService.createTemplateFromFile("takeHomeEmail");
-    body.takeHomeExamLink = takeHomeExamLink;
-  
-    // Send email
-    GmailApp.sendEmail(recipientEmail, subject, "", {
-      htmlBody: body.evaluate().getContent(),
-      name: "The LaSallian Applications",
-    });
-  }
+  // Email subject
+  var subject = "[THE LASALLIAN] AY 2023-2024 Term 3  Take Home Exam";
+
+  // Create template from takeHomeExamEmail.html and replace placeholders
+  var body = HtmlService.createTemplateFromFile("takeHomeEmail");
+  body.takeHomeExamLink = takeHomeExamLink;
+
+  // Send email
+  GmailApp.sendEmail(recipientEmail, subject, "", {
+    htmlBody: body.evaluate().getContent(),
+    name: "The LaSallian Applications",
+  });
+}
 
 function takeHomeMay25Morning() {
-takeHomeProcessSheet("May 25 Morning");
+  takeHomeProcessSheet("May 25 Morning");
 }
 
 function takeHomeMay25Afternoon() {
-takeHomeProcessSheet("May 25 Afternoon");
+  takeHomeProcessSheet("May 25 Afternoon");
 }
 
 function takeHomeMay29Morning() {
-takeHomeProcessSheet("May 29 Morning");
+  takeHomeProcessSheet("May 29 Morning");
 }
-
+    
 function takeHomeMay29Afternoon() {
-    takeHomeProcessSheet("May 29 Afternoon");
+  takeHomeProcessSheet("May 29 Afternoon");
 }
