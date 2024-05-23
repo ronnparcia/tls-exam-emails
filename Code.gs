@@ -1,4 +1,4 @@
-function processSheet(sheetName) {
+function genSecProcessSheet(sheetName) {
   var ss = SpreadsheetApp.getActiveSpreadsheet(); // Access the active spreadsheet
   var sheet = ss.getSheetByName(sheetName); // Access the sheet with your data (assuming it's the first sheet, change if needed)
   var data = sheet.getDataRange().getValues(); // Get all the data in the sheet
@@ -44,19 +44,19 @@ function processSheet(sheetName) {
 }
 
 function sendMay25Morning() {
-  processSheet("May 25 Morning");
+  genSecProcessSheet("May 25 Morning");
 }
 
 function sendMay25Afternoon() {
-  processSheet("May 25 Afternoon");
+  genSecProcessSheet("May 25 Afternoon");
 }
 
 function sendMay29Morning() {
-  processSheet("May 29 Morning");
+  genSecProcessSheet("May 29 Morning");
 }
 
 function sendMay29Afternoon() {
-  processSheet("May 29 Afternoon");
+  genSecProcessSheet("May 29 Afternoon");
 }
 
 function sendEmail(recipientEmail, generalExamLink, sectionExamLink) {
