@@ -24,7 +24,7 @@ function genSecProcessSheet(sheetName) {
 
     try {
       Logger.log("Sending email for " + recipientEmail);
-      sendEmail(recipientEmail, generalExamLink, sectionExamLink); // Send email
+      genSecSendEmail(recipientEmail, generalExamLink, sectionExamLink); // Send email
       sheet.getRange(i + 1, 1).setValue("Sent"); // Mark the row as processed
       Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n"); // Log success
     } catch (error) {
