@@ -64,7 +64,7 @@ function genSecSendEmail(recipientEmail, generalExamLink, sectionExamLink) {
   var subject = "[THE LASALLIAN] General and Section-Specific Exams";
 
   // Create template from email.html and replace placeholders
-  var body = HtmlService.createTemplateFromFile("email");
+  var body = HtmlService.createTemplateFromFile("genSecEmail");
   body.generalExamLink = generalExamLink;
   body.sectionExamLink = sectionExamLink;
 
