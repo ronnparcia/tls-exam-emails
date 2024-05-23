@@ -150,7 +150,12 @@ function takeHomeGetLink(sectionName) {
     case "Web (WebDev)":
       takeHomeExamLink = "webdev.com";
       break;
+    default:
+      takeHomeExamLink = "Error. Please contact us.";
+      break;
   }
+
+  return takeHomeExamLink;
 }
 
 function takeHomeSendEmail(recipientEmail, takeHomeExamLink) {
