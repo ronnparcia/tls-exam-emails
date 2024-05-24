@@ -121,7 +121,7 @@ function takeHomeGetLink(sectionName) {
 
   switch (sectionName) {
     case "University":
-      takeHomeExamLink = "bit.ly/TLS63T3UnivTHE";
+      takeHomeExamLink = "bit.ly/TLS63T3UniversityTHE";
       break;
     case "Menagerie":
       takeHomeExamLink = "bit.ly/TLS63T3MenageTHE";
