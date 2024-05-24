@@ -121,37 +121,37 @@ function takeHomeGetLink(sectionName) {
 
   switch (sectionName) {
     case "University":
-      takeHomeExamLink = "univ.com";
+      takeHomeExamLink = "bit.ly/TLS63T3UnivTHE";
       break;
     case "Menagerie":
-      takeHomeExamLink = "menage.com";
+      takeHomeExamLink = "bit.ly/TLS63T3MenageTHE";
       break;
     case "Sports":
-      takeHomeExamLink = "sports.com";
+      takeHomeExamLink = "bit.ly/TLS63T3SportsTHE";
       break;
     case "Vanguard":
-      takeHomeExamLink = "vangie.com";
+      takeHomeExamLink = "bit.ly/TLS63T3VangieTHE";
       break;
     case "Intermedia":
-      takeHomeExamLink = "intermedia.com";
+      takeHomeExamLink = "bit.ly/TLS63T3IntermediaTHE";
       break;
     case "Photo":
-      takeHomeExamLink = "photo.com";
+      takeHomeExamLink = "bit.ly/TLS63T3PhotoTHE";
       break;
     case "Art & Graphics":
-      takeHomeExamLink = "a&g.com";
+      takeHomeExamLink = "bit.ly/TLS63T3ArtGraphicsTHE";
       break;
     case "Layout":
-      takeHomeExamLink = "layout.com";
+      takeHomeExamLink = "bit.ly/TLS63T3LayoutTHE";
       break;
     case "Web (Web)":
-      takeHomeExamLink = "web.com";
+      takeHomeExamLink = "bit.ly/TLS63T3WebTHE";
       break;
     case "Web (WebDev)":
-      takeHomeExamLink = "webdev.com";
+      takeHomeExamLink = "bit.ly/TLS63T3WebDevTHE";
       break;
     default:
-      takeHomeExamLink = "Error. Please contact us.";
+      takeHomeExamLink = "Error retrieving link. Please contact us.";
       break;
   }
 
