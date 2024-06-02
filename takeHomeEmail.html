@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      #emailContainer {
+        max-width: 575px;
+        font-family: 'Garamond', 'EB Garamond', serif;
+        font-size: 12pt;
+        margin: 0 auto;
+      }
+
+      #header-img {
+        width: 100%;
+      }
+
+      td, th {
+        vertical-align: top;
+        padding: 6px;
+        text-align: left;
+        border: 1px solid black;
+        font-weight: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="emailContainer">
+      <img src="https://i.imgur.com/5Xm9A0T.png" id="header-img">
+
+      <p>Greetings, applicant!</p>
+
+      <p>Congratulations on getting this far! This email contains your Take Home Exam and details 
+        on your Section Editor Interview. </p>
+
+      <ul>
+        <li>Take Home Exam: <?= takeHomeExamLink ?></li>
+      </ul>
+
+      <p>Please be guided by the deadlines below:</p>
+      <table border="1" style="
+        border-collapse: collapse;
+      ">
+        <tr>
+          <th style="background-color: black; color: white;  ">Date of Exam</th>
+          <th style="background-color: black; color: white;  ">Time</th>
+          <th style="background-color: #871A0F; color: white; max-width: 120px;">Take Home Exam Deadline</th>
+          <th style="background-color: #871A0F; color: white;">Time</th>
+        </tr>
+        <tr>
+          <td rowspan="2">May 25</td>
+          <td>8 am to 12 pm </td>
+          <td rowspan="2" style="max-width: 120px;">June 1</td>
+          <td>6:59 pm</td>
+        </tr>
+        <tr>
+          <td>1 pm to 5 pm</td>
+          <td>11:59 pm</td>
+        </tr>
+        <tr>
+          <td rowspan="2">May 29</td>
+          <td>8 am to 12 pm </td>
+          <td rowspan="2" style="max-width: 120px;">June 5</td>
+          <td>6:59 pm</td>
+        </tr>
+        <tr>
+          <td>1 pm to 5 pm</td>
+          <td>11:59 pm </td>
+        </tr>
+      </table>
+
+      <p>We kindly request that you submit these outputs on time. Every hour or part of an hour 
+        past the deadline is 10 percent deducted from your total score. For example, if you submit 
+        your exam 90 minutes past the deadline, you will be penalized as if you were late for 
+        two hours.</p>
+
+      <p>After submitting, <strong>delete all files related to the exam</strong>. Below are the instructions 
+        for submission:</p>
+
+      <p><strong>Take Home Exam:</strong></p>
+      <ul>
+        <li>File format: PDF or zipped folder (as instructed in your Take Home Exam)</li>
+        <li>File name: SECTION Take Home_T3_Last name, First Name (e.g. University Take Home_T3_Limbago, Eloisa)</li>
+        <li>Deadline: Seven days from now</li>
+        <li>If you are an applicant for the Photo or Layout Section, you will have a different mode of submission.</li>
+      </ul>
+
+      <p>Submit through: bit.ly/TLS63T3THESubmissionBox.</p>
+
+      <p><strong>Section Editor Interviews:</strong></p>
+      <ul>
+        <li>Please schedule your interviews at bit.ly/TLS63T3SecEdInterview.</li>
+        <li>You may only schedule your interview <strong>after submitting</strong> the General and Section Exams.</li>
+        <li>During the interview, be professional, prompt, and respectful.</li>
+      </ul>
+
+      <p>If you have any questions or concerns, you may raise them through this email thread. 
+        You may also reach the section editors through the platforms provided in the questionnaire or Associate Editor Eloisa Limbago at (0917) 721 0513.</p>
+
+      <p>Best of luck!</p>
+
+      <p><strong>Always for issue-oriented critical thinking,</strong><br>
+        The LaSallian 63</p>
+    </div>
+  </body>
+</html>

@@ -1,70 +1,190 @@
-function sendScheduledEmails() {
+function genSecProcessSheet(sheetName) {
   var ss = SpreadsheetApp.getActiveSpreadsheet(); // Access the active spreadsheet
-  var sheet = ss.getSheets()[0]; // Access the sheet with your data (assuming it's the first sheet, change if needed)
-  var currentTime = new Date(); // Get the current date and time
+  var sheet = ss.getSheetByName(sheetName); // Access the sheet with your data (assuming it's the first sheet, change if needed)
   var data = sheet.getDataRange().getValues(); // Get all the data in the sheet
-  
+
   // Loop through the rows to check if emails should be sent
-  for (var i = 1; i < data.length; i++) { // Start from the second row assuming headers in the first row
-    var schedule = data[i][1];
+  // Note:  The loop starts from the third row (index 2) and skips the
+  //        first row (NOTICE) and second row (header)
+  for (var i = 2; i < data.length; i++) {
+    // Get data from the current row per column.
+    // Note: The column index starts from 0. Second bracket is the column index.
+    var genSecStatus = data[i][0];
     var recipientEmail = data[i][4];
-    var generalExamLink = data[i][5];
-    var sectionExamLink = data[i][6];
-     
-    var scheduleDate = new Date(schedule); // Convert the schedule cell (assumed to be in 9/27/2023 7:59:00 format) to a Date object
+    var generalExamLink = data[i][6];
+    var sectionExamLink = data[i][7];
 
-    // Check if the scheduleDate matches the current time
-    if (isForSending(scheduleDate, currentTime)) {
-      // Attempt to send the email and handle any exceptions
-      try {
-        // Log attempt to send email
-        Logger.log("Sending email for " + recipientEmail);
-        Logger.log("Schedule for " + recipientEmail + " is at " + scheduleDate.getFullYear() + "/" + scheduleDate.getMonth() + "/" + scheduleDate.getDate() + " " + scheduleDate.getHours() + ":" + scheduleDate.getMinutes());
-        Logger.log("Current time is " + currentTime.getFullYear() + "/" + currentTime.getMonth() + "/" + currentTime.getDate() + " " + currentTime.getHours() + ":" + currentTime.getMinutes());
+    // Check if the row has already been processed
+    if (genSecStatus === "Sent" || genSecStatus === "Failed") {
+      Logger.log(
+        "Email for " + recipientEmail + " has already been processed.\n\n\n\n"
+      );
+      continue;
+    }
 
-        // Send email
-        sendEmail(recipientEmail, generalExamLink, sectionExamLink);
+    try {
+      Logger.log("Sending email for " + recipientEmail);
+      genSecSendEmail(recipientEmail, generalExamLink, sectionExamLink); // Send email
+      sheet.getRange(i + 1, 1).setValue("Sent"); // Mark the row as processed
+      Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n"); // Log success
+    } catch (error) {
+      // Log the error
+      Logger.log(
+        "ERROR sending email for " +
+          recipientEmail +
+          "(" +
+          error.message +
+          ")\n\n\n\n"
+      );
 
-        // Mark the row as processed (if needed)
-        sheet.getRange(i + 1, 1).setValue("✓");
-        
-        // Log success
-        Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n");
-      } catch (error) {
-        // Log the error
-        Logger.log("Error sending email for " + recipientEmail + "(" + error.message + ")\n\n\n\n");
-      } // Closing brace of catch block
-    } // Closing brace of if block
-  } // Closing brace of for block
-} // Closing brace of function
+      // Mark the row as failed
+      sheet.getRange(i + 1, 1).setValue("Failed");
+    }
+  }
+}
 
-function sendEmail(recipientEmail, generalExamLink, sectionExamLink) {
+function genSecMay25Morning() {
+  genSecProcessSheet("May 25 Morning");
+}
+
+function genSecMay25Afternoon() {
+  genSecProcessSheet("May 25 Afternoon");
+}
+
+function genSecMay29Morning() {
+  genSecProcessSheet("May 29 Morning");
+}
+
+function genSecMay29Afternoon() {
+  genSecProcessSheet("May 29 Afternoon");
+}
+
+function genSecSendEmail(recipientEmail, generalExamLink, sectionExamLink) {
   // Email subject
-  var subject = "[THE LASALLIAN] AY 2023-2024 Term 1 General & Section Exam";
+  var subject = "[THE LASALLIAN] General and Section-Specific Exams";
 
   // Create template from email.html and replace placeholders
-  var body = HtmlService.createTemplateFromFile("email");
+  var body = HtmlService.createTemplateFromFile("genSecEmail");
   body.generalExamLink = generalExamLink;
   body.sectionExamLink = sectionExamLink;
 
   // Send email
-  GmailApp.sendEmail(
-    recipientEmail, 
-    subject,
-    "",
-    {
-      htmlBody: body.evaluate().getContent(),
-      name: "The LaSallian Applications"
-    }
-  );
+  GmailApp.sendEmail(recipientEmail, subject, "", {
+    htmlBody: body.evaluate().getContent(),
+    name: "The LaSallian Applications",
+  });
 }
 
-function isForSending(scheduleDate, currentTime) {
-  return (
-    scheduleDate.getFullYear() === currentTime.getFullYear() &&
-    scheduleDate.getMonth()    === currentTime.getMonth()    &&
-    scheduleDate.getDate()     === currentTime.getDate()     &&
-    scheduleDate.getHours()    === currentTime.getHours()    &&
-    scheduleDate.getMinutes()  === currentTime.getMinutes()
-  );
+// Take Home Exams
+
+function takeHomeProcessSheet(sheetName) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet(); // Access the active spreadsheet
+  var sheet = ss.getSheetByName(sheetName); // Access the sheet with your data (assuming it's the first sheet, change if needed)
+  var data = sheet.getDataRange().getValues(); // Get all the data in the sheet
+
+  // Loop through the rows to check if emails should be sent
+  // Note:  The loop starts from the third row (index 2) and skips the
+  //        first row (NOTICE) and second row (header)
+  for (var i = 2; i < data.length; i++) {
+    // Get data from the current row per column.
+    // Note: The column index starts from 0. Second bracket is the column index.
+    var recipientEmail = data[i][4];
+    var sectionName = data[i][3];
+    var takeHomeExamLink = takeHomeGetLink(sectionName);
+
+    try {
+      Logger.log("Sending email for " + recipientEmail + "\n");
+      Logger.log("Section: " + sectionName);
+      Logger.log("Link: " + takeHomeExamLink);
+      takeHomeSendEmail(recipientEmail, takeHomeExamLink);
+      sheet.getRange(i + 1, 2).setValue("Sent"); // Mark the row as processed
+      Logger.log("Email successfully sent for " + recipientEmail + "\n\n\n\n"); // Log success
+    } catch (error) {
+      // Log the error
+      Logger.log(
+        "ERROR sending email for " +
+          recipientEmail +
+          "(" +
+          error.message +
+          ")\n\n\n\n"
+      );
+
+      // Mark the row as failed
+      sheet.getRange(i + 1, 2).setValue("Failed");
+    }
+  }
+}
+
+function takeHomeGetLink(sectionName) {
+  // Switch case for section name
+  var takeHomeExamLink;
+
+  switch (sectionName) {
+    case "University":
+      takeHomeExamLink = "bit.ly/TLS63T3UniversityTHE";
+      break;
+    case "Menagerie":
+      takeHomeExamLink = "bit.ly/TLS63T3MenageTHE";
+      break;
+    case "Sports":
+      takeHomeExamLink = "bit.ly/TLS63T3SportsTHE";
+      break;
+    case "Vanguard":
+      takeHomeExamLink = "bit.ly/TLS63T3VangieTHE";
+      break;
+    case "Intermedia":
+      takeHomeExamLink = "bit.ly/TLS63T3IntermediaTHE";
+      break;
+    case "Photo":
+      takeHomeExamLink = "bit.ly/TLS63T3PhotoTHE";
+      break;
+    case "Art & Graphics":
+      takeHomeExamLink = "bit.ly/TLS63T3ArtGraphicsTHE";
+      break;
+    case "Layout":
+      takeHomeExamLink = "bit.ly/TLS63T3LayoutTHE";
+      break;
+    case "Web (Web)":
+      takeHomeExamLink = "bit.ly/TLS63T3WebTHE";
+      break;
+    case "Web (WebDev)":
+      takeHomeExamLink = "bit.ly/TLS63T3WebDevTHE";
+      break;
+    default:
+      takeHomeExamLink = "Error retrieving link. Please contact us.";
+      break;
+  }
+
+  return takeHomeExamLink;
+}
+
+function takeHomeSendEmail(recipientEmail, takeHomeExamLink) {
+  // Email subject
+  var subject = "[THE LASALLIAN] AY 2023-2024 Term 3  Take Home Exam";
+
+  // Create template from takeHomeExamEmail.html and replace placeholders
+  var body = HtmlService.createTemplateFromFile("takeHomeEmail");
+  body.takeHomeExamLink = takeHomeExamLink;
+
+  // Send email
+  GmailApp.sendEmail(recipientEmail, subject, "", {
+    htmlBody: body.evaluate().getContent(),
+    name: "The LaSallian Applications",
+  });
+}
+
+function takeHomeMay25Morning() {
+  takeHomeProcessSheet("May 25 Morning");
+}
+
+function takeHomeMay25Afternoon() {
+  takeHomeProcessSheet("May 25 Afternoon");
+}
+
+function takeHomeMay29Morning() {
+  takeHomeProcessSheet("May 29 Morning");
+}
+    
+function takeHomeMay29Afternoon() {
+  takeHomeProcessSheet("May 29 Afternoon");
 }
